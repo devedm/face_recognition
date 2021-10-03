@@ -1,3 +1,5 @@
+import React, {Component} from 'react';
+import Particles from 'react-particles-js';
 import 'tachyons';
 import './App.css'
 import Navigation from './components/Navigation/Navigation.js';
@@ -15,16 +17,21 @@ const particlesOptions = {
       }
     }
 }
-function App() {
-  return (
-    <div className='App'>
-      
-      <Navigation/>
-      <Logo/>
-      <Rank/>
-      <ImageLinkForm/>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className='App'>
+        <Particles
+        params={particlesOptions}
+        />
+        <Navigation/>
+        <Logo/>
+        <Rank/>
+        <ImageLinkForm/>
+      </div>
+    );
+  }
+  
 }
 
 export default App;
