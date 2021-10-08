@@ -9,11 +9,82 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm.js';
 import Rank from './components/Rank/Rank.js';
 import Navigation from './components/Navigation/Navigation.js';
 import Clarifai from 'clarifai';
+import Particles from "react-tsparticles";
 
 const app = new Clarifai.App({
   apiKey: "53c49abb0a704cafa4a24576850c9cff",
  });
 
+const particlesOptions = {
+    fpsLimit: 60,
+    interactivity: {
+      detectsOn: "canvas",
+      events: {
+        onClick: {
+          enable: true,
+          mode: "push",
+        },
+        onHover: {
+          enable: true,
+          mode: "repulse",
+        },
+        resize: true,
+      },
+      modes: {
+        bubble: {
+          distance: 400,
+          duration: 2,
+          opacity: 0.8,
+          size: 20,
+        },
+        push: {
+          quantity: 8,
+        },
+        repulse: {
+          distance: 100,
+          duration: 0.8,
+        },
+      },
+    },
+    particles: {
+      links: {
+        color: "#ffffff",
+        distance: 150,
+        enable: true,
+        opacity: 0.1,
+        width: 1,
+      },
+      collisions: {
+        enable: true,
+      },
+      move: {
+        direction: "none",
+        enable: true,
+        outMode: "bounce",
+        random: false,
+        speed: 1,
+        straight: false,
+      },
+      number: {
+        density: {
+          enable: true,
+          value_area: 900,
+        },
+        value: 80,
+      },
+      opacity: {
+        value: 0.5,
+      },
+      shape: {
+        type: "circle",
+      },
+      size: {
+        random: true,
+        value: 2,
+      },
+    },
+    detectRetina: true,
+  };
 
 class App extends Component {
   constructor() {
@@ -70,10 +141,16 @@ class App extends Component {
     this.setState({route: route});
   }
 
+  
+
   render() {
     const { isSignedIn, imageUrl, route, box } = this.state;
     return (
       <div className='App'>
+        <Particles 
+          className='particles'
+          params={particlesOptions}
+        />
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
         { route === 'home' 
           ? <div>
